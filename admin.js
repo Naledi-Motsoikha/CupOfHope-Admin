@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const errorMsg = document.getElementById('login-error');
 
         try {
-            const res = await fetch('/api/login', {
+            const res = await fetch('https://cupofhope-api.onrender.com/api/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password })
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const formData = new FormData();
         formData.append('image', fileInput.files[0]);
 
-        const res = await fetch('/api/upload', {
+        const res = await fetch('https://cupofhope-api.onrender.com/api/upload', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = Object.fromEntries(formData.entries());
             const token = localStorage.getItem('cms_token');
 
-            const res = await fetch('/api/content', {
+            const res = await fetch('https://cupofhope-api.onrender.com/api/content', {
                 method: 'PUT',
                 headers: { 
                     'Content-Type': 'application/json',
@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Fetch current content
         try {
-            const res = await fetch('/api/content');
+            const res = await fetch('https://cupofhope-api.onrender.com/api/content');
             if (res.ok) {
                 const data = await res.json();
                 
