@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMS Admin Panel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="bg-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <!-- Login Container -->
+    <div id="login-container" class="container glass-panel">
+        <div class="login-header">
+            <h2>Welcome Back</h2>
+            <p>Sign in to manage your content</p>
+        </div>
+        <form id="login-form">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter your username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+            </div>
+            <div id="login-error" class="error-msg"></div>
+            <button type="submit" class="btn btn-primary">Sign In</button>
+        </form>
+    </div>
+
+    <!-- Dashboard Container -->
+    <div id="dashboard-container" class="container glass-panel" style="display: none;">
+        <header class="dashboard-header">
+            <div class="header-title">
+                <h2>Admin Dashboard</h2>
+                <p>Manage your website content</p>
+            </div>
+            <button type="button" id="logout-btn" class="btn btn-outline">Logout</button>
+        </header>
+
+        <form id="content-form">
+            <!-- Hidden inputs for serialized arrays -->
+            <input type="hidden" id="programs" name="programs">
+            <input type="hidden" id="news" name="news">
+            <input type="hidden" id="events" name="events">
+            <input type="hidden" id="sponsors" name="sponsors">
+            <input type="hidden" id="hero_bg" name="hero_bg">
+
+            <div class="section-card glass-card">
+                <div class="card-header">
+                    <h3>Hero Section</h3>
+                </div>
+                <div class="form-group">
+                    <label for="hero_title">Hero Title</label>
+                    <input type="text" id="hero_title" name="hero_title" placeholder="Enter hero title">
+                </div>
+                <div class="form-group">
+                    <label for="hero_subtitle">Hero Subtitle</label>
+                    <textarea id="hero_subtitle" name="hero_subtitle" rows="3" placeholder="Enter hero subtitle"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="hero_bg_file">Hero Background Image</label>
+                    <div class="file-input-wrapper">
+                        <input type="file" id="hero_bg_file" name="hero_bg_file" accept="image/*">
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-card glass-card">
+                <div class="card-header">
+                    <h3>About Section</h3>
+                </div>
+                <div class="form-group">
+                    <label for="about_title">About Title</label>
+                    <input type="text" id="about_title" name="about_title" placeholder="Enter about title">
+                </div>
+                <div class="form-group">
+                    <label for="about_desc1">About Description Paragraph 1</label>
+                    <textarea id="about_desc1" name="about_desc1" rows="4" placeholder="First paragraph..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="about_desc2">About Description Paragraph 2</label>
+                    <textarea id="about_desc2" name="about_desc2" rows="4" placeholder="Second paragraph..."></textarea>
+                </div>
+            </div>
+
+            <div class="section-card glass-card">
+                <div class="card-header">
+                    <h3>Programs</h3>
+                    <button type="button" id="add-program-btn" class="btn btn-sm btn-accent">+ Add Program</button>
+                </div>
+                <div id="programs-container"></div>
+            </div>
+
+            <div class="section-card glass-card">
+                <div class="card-header">
+                    <h3>News & Updates</h3>
+                    <button type="button" id="add-news-btn" class="btn btn-sm btn-accent">+ Add News</button>
+                </div>
+                <div id="news-container"></div>
+            </div>
+
+            <div class="section-card glass-card">
+                <div class="card-header">
+                    <h3>Events</h3>
+                    <button type="button" id="add-event-btn" class="btn btn-sm btn-accent">+ Add Event</button>
+                </div>
+                <div id="events-container"></div>
+            </div>
+
+            <div class="section-card glass-card">
+                <div class="card-header">
+                    <h3>Sponsors</h3>
+                    <button type="button" id="add-sponsor-btn" class="btn btn-sm btn-accent">+ Add Sponsor</button>
+                </div>
+                <div id="sponsors-container"></div>
+            </div>
+
+            <div class="bottom-actions">
+                <div id="success-msg" style="color: #10b981; font-weight: 500; margin-bottom: 10px;"></div>
+                <div id="error-msg" class="error-msg" style="margin-bottom: 10px;"></div>
+                <button type="submit" class="btn btn-primary btn-lg" id="save-btn">Save All Changes</button>
+            </div>
+        </form>
+    </div>
+    
+    <script src="admin.js"></script>
+</body>
+</html>
