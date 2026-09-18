@@ -92,6 +92,20 @@ document.addEventListener('DOMContentLoaded', () => {
             formData.delete('hero_bg_file');
 
             const data = Object.fromEntries(formData.entries());
+            
+            // Format textareas that use simplified markdown
+            if (data.about_title) {
+                let html = data.about_title;
+                html = html.replace(/\*(.*?)\*/g, '<span class="about-title-accent">$1</span>');
+                html = html.replace(/\n/g, '<br>');
+                data.about_title = html;
+            }
+            if (data.hero_title) {
+                let html = data.hero_title;
+                html = html.replace(/\n/g, '<br>');
+                data.hero_title = html;
+            }
+
             const token = localStorage.getItem('cms_token');
 
             const res = await fetch('https://cupofhope-api.onrender.com/api/content', {
@@ -138,7 +152,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 ['hero_title', 'hero_subtitle', 'hero_bg', 'about_title', 'about_desc1', 'about_desc2'].forEach(key => {
                     const input = document.getElementById(key);
                     if (input && data[key]) {
-                        input.value = data[key];
+                        if (key === 'about_title') {
+                            let text = data[key];
+                            text = text.replace(/<span class="about-title-accent">(.*?)<\/span>/gi, '*$1*');
+                            text = text.replace(/<br\s*\/?>/gi, '\n');
+                            input.value = text;
+                        } else if (key === 'hero_title') {
+                            let text = data[key];
+                            text = text.replace(/<br\s*\/?>/gi, '\n');
+                            input.value = text;
+                        } else {
+                            input.value = data[key];
+                        }
                     }
                 });
                 
